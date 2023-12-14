@@ -30,7 +30,7 @@ class Movie(BaseModel):
     genres = models.ManyToManyField('Genre', through='MovieGenre', related_name='movies')
     rating = models.IntegerField(_('Rating'))
     duration = models.IntegerField(_('Duration'))
-    image = models.ImageField(_('Image'), upload_to=upload_to)
+    image = models.ImageField(_('Image'), upload_to=upload_to, null=True, blank=True)
     released_at = models.DateField(_('Released At'))
     
     class Meta:
