@@ -7,6 +7,15 @@ on:
     branches: [ "main", "develop" ]
 
 jobs:
+  env:
+    DATABASE_NAME: {{ secrets.DATABASE_NAME }}
+    DATABASE_USER: {{ secrets.DATABASE_USER }}
+    DATABASE_PASSWORD: {{ secrets.DATABASE_PASSWORD }}
+    DATABASE_HOST: {{ secrets.DATABASE_HOST }}
+    DATABASE_PORT: {{ secrets.DATABASE_PORT }}
+    SECRET_KEY: {{ secrets.SECRET_KEY }}
+    DEBUG: {{ secrets.DEBUG }}
+
   build:
 
     runs-on: ubuntu-latest
