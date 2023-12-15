@@ -8,14 +8,13 @@ on:
 
 
 env:
-  DATABASE_NAME: github_actions
-  DATABASE_USER: postgres
-  DATABASE_PASSWORD: postgres
-  DATABASE_HOST: localhost
-  DATABASE_PORT: 5432
-  SECRET_KEY: secret
-  DEBUG: True
-  TEST: ${{ secrets.TEST }}
+  DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+  DATABASE_USER: ${{ secrets.DATABASE_USER }}
+  DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+  DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+  DATABASE_PORT: ${{ secrets.DATABASE_PORT }}}
+  SECRET_KEY: ${{ secrets.SECRET_KEY }}
+  DEBUG: ${{ secrets.DEBUG }}
 
 jobs:
   build:
@@ -29,9 +28,9 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
-          POSTGRES_DB: github_actions
+          POSTGRES_USER: ${{ secrets.DATABASE_USER }}
+          POSTGRES_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+          POSTGRES_DB: ${{ secrets.DATABASE_NAME }}
         ports:
           - 5432:5432
         # needed because the postgres container does not provide a healthcheck
@@ -45,8 +44,6 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install Dependencies
       run: |
-        echo $env:TEST
-        echo 
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Run Migrations
