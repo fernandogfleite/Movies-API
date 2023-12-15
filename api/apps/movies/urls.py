@@ -11,6 +11,8 @@ from django.urls import (
 
 from rest_framework.routers import DefaultRouter
 
+app_name = 'movies'
+
 router = DefaultRouter()
 router.register(r'movies', MovieViewSet, basename='movies')
 router.register(r'genres', GenreViewSet, basename='genres')
