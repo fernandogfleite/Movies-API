@@ -19,11 +19,9 @@ jobs:
       postgres:
         image: postgres:latest
         env:
-          DATABASE_USER: postgres
-          DATABASE_PASSWORD: postgres
-          DATABASE_NAME: github_actions
-          DATABASE_HOST: localhost
-          DATABASE_PORT: 5432
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: github_actions
         ports:
           - 5432:5432
         # needed because the postgres container does not provide a healthcheck
