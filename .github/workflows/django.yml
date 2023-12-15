@@ -15,6 +15,7 @@ env:
   DATABASE_PORT: 5432
   SECRET_KEY: secret
   DEBUG: True
+  TEST: ${{ secrets.TEST }}
 
 jobs:
   build:
@@ -44,8 +45,8 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install Dependencies
       run: |
-        echo ${{ vars.TEST }}
-        echo ${{ secrets.TEST }}
+        echo $env:TEST
+        echo 
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Run Migrations
