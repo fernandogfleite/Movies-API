@@ -1,6 +1,7 @@
 from api.apps.movies.views.movies import (
     MovieViewSet,
-    GenreViewSet
+    GenreViewSet,
+    ReleaseYearsAPIView
 )
 
 from django.urls import (
@@ -16,5 +17,6 @@ router.register(r'genres', GenreViewSet, basename='genres')
 
 
 urlpatterns = [
-    path('', include(router.urls))
+    path('movies/release-years/', ReleaseYearsAPIView.as_view(), name='release-years'),
+    path('', include(router.urls)),
 ]

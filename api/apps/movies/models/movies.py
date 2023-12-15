@@ -8,6 +8,19 @@ def upload_to(instance, filename):
     return f"{instance.__class__.__name__}/{filename}"
 
 
+class Unaccent(models.Transform):
+    bilateral = True
+    lookup_name = 'unaccent'
+
+    def as_postgresql(self, compiler, connection):
+        lhs, params = compiler.compile(self.lhs)
+        return "UNACCENT(%s)" % lhs, params
+
+
+models.CharField.register_lookup(Unaccent)
+models.TextField.register_lookup(Unaccent)
+
+
 class BaseModel(models.Model):
     """
     Base model for all models in the project
@@ -30,7 +43,7 @@ class Movie(BaseModel):
     genres = models.ManyToManyField('Genre', through='MovieGenre', related_name='movies')
     rating = models.IntegerField(_('Rating'))
     duration = models.IntegerField(_('Duration'))
-    image = models.ImageField(_('Image'), upload_to=upload_to)
+    image_url = models.URLField(_('Image URL'))
     released_at = models.DateField(_('Released At'))
     
     class Meta:
