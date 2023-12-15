@@ -8,13 +8,13 @@ on:
 
 
 env:
-  DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
-  DATABASE_USER: ${{ secrets.DATABASE_USER }}
-  DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
-  DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
-  DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
-  SECRET_KEY: ${{ secrets.SECRET_KEY }}
-  DEBUG: ${{ secrets.DEBUG }}
+  DATABASE_NAME: github_actions
+  DATABASE_USER: postgres
+  DATABASE_PASSWORD: postgres
+  DATABASE_HOST: localhost
+  DATABASE_PORT: 5432
+  SECRET_KEY: secret
+  DEBUG: True
 
 jobs:
   build:
