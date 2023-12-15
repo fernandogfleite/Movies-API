@@ -34,6 +34,6 @@ class MovieSerializer(serializers.ModelSerializer):
             'genres',
             'rating',
             'duration',
-            'image',
+            'image_url',
             'released_at'
         )
