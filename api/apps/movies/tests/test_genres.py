@@ -40,7 +40,7 @@ class TestListGenres(APITestCase):
         serializer = GenreSerializer(genres, many=True)
         
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['results'], serializer.data)
+        self.assertEqual(response.data, serializer.data)
 
         
     def test_list_genres_with_filter_by_name(self):
@@ -54,7 +54,7 @@ class TestListGenres(APITestCase):
         serializer = GenreSerializer(genres, many=True)
         
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.data['results'], serializer.data)
+        self.assertEqual(response.data, serializer.data)
     
 
 class TestRetrieveGenre(APITestCase):
