@@ -26,6 +26,7 @@ class GenreViewSet(ReadOnlyModelViewSet):
     queryset = Genre.objects.all()
     serializer_class = GenreSerializer
     permission_classes = (AllowAny,)
+    pagination_class = None
     
     def get_queryset(self):
         queryset = super().get_queryset()

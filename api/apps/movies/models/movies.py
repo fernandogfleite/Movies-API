@@ -4,10 +4,6 @@ from django.utils.translation import gettext_lazy as _
 import uuid
 
 
-def upload_to(instance, filename):
-    return f"{instance.__class__.__name__}/{filename}"
-
-
 class Unaccent(models.Transform):
     bilateral = True
     lookup_name = 'unaccent'
