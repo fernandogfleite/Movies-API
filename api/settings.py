@@ -26,13 +26,38 @@ SECRET_KEY = os.environ.get("SECRET_KEY", config("SECRET_KEY"))
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(os.environ.get("DEBUG", config("DEBUG", default=False, cast=bool)))
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = config(
+    'ALLOWED_HOSTS', 
+    cast=lambda v: [s.strip() for s in v.split(', ')]
+)
+
+CSRF_TRUSTED_ORIGINS = config(
+    'CSRF_TRUSTED_ORIGINS', 
+    cast=lambda v: [s.strip() for s in v.split(', ')]
+)
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
+
+CORS_ALLOWED_ORIGINS = config(
+    'ALLOWED_HOSTS_CORS', 
+    cast=lambda v: [s.strip() for s in v.split(', ')]
+)
+
+CORS_ALLOW_HEADERS = (
+    'content-disposition',
+    'accept-encoding',
+    'content-type', 
+    'accept',
+    'origin',
+    'authorization'
+)
 
 
 # Application definition
 
 INSTALLED_APPS = [
     'rest_framework',
+    'corsheaders',
     
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,6 +70,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
