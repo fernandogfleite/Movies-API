@@ -15,6 +15,9 @@ env:
   DATABASE_PORT: ${{ vars.DATABASE_PORT }}
   SECRET_KEY: ${{ vars.SECRET_KEY }}
   DEBUG: ${{ vars.DEBUG }}
+  ALLOWED_HOSTS: ${{ vars.ALLOWED_HOSTS }}
+  ALLOWED_HOSTS_CORS: ${{ vars.ALLOWED_HOSTS_CORS }}
+  CSRF_TRUSTED_ORIGINS: ${{ vars.CSRF_TRUSTED_ORIGINS }}
 
 jobs:
   build:
