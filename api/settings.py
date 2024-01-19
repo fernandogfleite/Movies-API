@@ -49,7 +49,8 @@ CORS_ALLOW_HEADERS = (
     'content-type', 
     'accept',
     'origin',
-    'authorization'
+    'authorization',
+    'ngrok-skip-browser-warning'
 )
 
 
